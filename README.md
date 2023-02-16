@@ -47,6 +47,7 @@ python manage.py runserver --insecure
 ```
 ## Launching the Docker
 ```
+cd src
 docker build .            
 docker-compose build 
 docker-compose up         

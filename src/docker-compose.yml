@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    command: python /usr/src/app/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - core/.env
+    environment:
+      - DATABASES_NAME=postgres
+      - SQL_ENGINE=django.db.backends.postgresql
+      - DATABASES_USER=postgres
+      - DATABASES_HOST=db
+      - DATABASES_PORT=5432
+      - SECRET_KEY=django-insecure-q^#7jpn*%-$z4uv%!bz9z50cr-nm%g7--fbp551e)fd*yuwjpp
+      - API_KEY_STRIPE=sk_test_51MaN6EAN9bR3kffQjEA9NTuABDIFwe5ykHMW8VOapAym4vGfJWdxPDACYV6CGm4s8wZCxwWDKKFiKVCZW1wMyrlr00CTUaHNeA
+    depends_on:
+      - db
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5435:5432
+volumes:
+  postgres_data:

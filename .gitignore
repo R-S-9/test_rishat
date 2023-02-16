@@ -1,0 +1,8 @@
+/venv/
+/.idea/
+/src/core/.env
+__pycache__/
+/__pycache__
+/.git/
+*.pyc
+*py[cod]

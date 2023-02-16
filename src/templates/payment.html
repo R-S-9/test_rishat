@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% csrf_token %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script type="text/javascript" src="script.js"></script>
+        <title>{% block title %}Item {{ item_id }}{% endblock %}</title>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    </head>
+
+    {% block content %}
+        <body>
+            <div class="header">
+                <h1>Тестовая покупка товара</h1>
+            </div>
+            <div class="logo-wrapper"></div>
+            <div class="main-wrapper">
+                {% if data %}
+                    <div class="content">
+                        {% for item in data %}
+                            <div class="title">{{ item.title }}</div>
+                            <div class="pics">
+                                <img src="https://via.placeholder.com/250x200" alt="">
+                            </div><br>
+                            <p>Описание: {{ item.description }}</p><br>
+                            <p>Цена в RUB: р.{{ item.price_rub }}</p><br>
+                            <p>Цена в USD: ${{ item.price_usd }}</p><br>
+                        {% endfor %}
+                        <button class="buy-modal-btn">Buy</button>
+                        {% else %}
+                        Такого товара не существует или он был удален.
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="d-none modal-wrapper">
+                <div class="modal-body">
+                    {% for item in data %}
+                        <p>Товар: {{ item.title }}</p><br>
+                        <p>Цена в RUB: {{ item.price_rub }}</p><br>
+                        <p>Цена в USD: ${{ item.price_usd }}</p><br>
+                        <label>
+                            Выберите валюту:
+                            <select class="currency-select">
+                                <option value="usd">usd</option>
+                                <option value="rub">rub</option>
+                            </select>
+                        </label>
+                        <div>
+                            <button id="buy-button" class="btn-Buy">Buy</button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                const stripe = Stripe(
+                    'pk_test_51MaN6EAN9bR3kffQrRB3RsM3F0exiGeLMjL9e602FbmdIGbLlkMFYn8uVN5g5VRYBCkeSO9GgvGJICWaenoQfNr900VsTIaCEp'
+                );
+                const buyButton = document.getElementById('buy-button');
+                let currency = 'usd'
+                const buyModalBnt = document.querySelector('.buy-modal-btn')
+                const modalWrapper = document.querySelector('.modal-wrapper')
+                const select = document.querySelector('.currency-select')
+                const mainBuyBtn = document.querySelector('.main-buy-btn')
+                buyModalBnt.onclick = () => {
+                    if (modalWrapper.classList.contains('d-none')) {
+                        modalWrapper.classList.remove('d-none')
+                    }
+                }
+                modalWrapper.onclick = (event) => {
+                    if(event.target === modalWrapper) {
+                        modalWrapper.classList.add('d-none')
+                    }
+                }
+                select.onchange = (event) => {
+                    currency = event.target.value
+                }
+                buyButton.addEventListener('click', function() {
+                    fetch('http://127.0.0.1:8000/buy/' + {{ item_id }} +'/' + currency, {
+                        method: 'GET',
+                        headers: {"Content-Type": "application/json"},
+                    },)
+                        .then((result) => { return result.json(); })
+                        .then((data) => {
+                            return stripe.redirectToCheckout({sessionId: data.sessionId})
+                        })})
+            </script>
+        </body>
+    {% endblock %}
+</html>

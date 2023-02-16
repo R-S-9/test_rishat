@@ -1,0 +1,115 @@
+.header{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    text-align: center;
+    background: linear-gradient(to top, rgb(31, 54, 31), rgb(46, 66, 46));
+    /*background: linear-gradient(90deg, #008bc9,#4ae184);*/
+    box-shadow: 0 7px 5px -5px rgba(0, 0, 0, 1);
+}
+body {
+    color: white;
+    background: linear-gradient(90deg, #008bc9,#4ae184);
+    font-family: Georgia, serif;
+}
+* {
+    padding:0;
+    margin:0;
+}
+.logo-wrapper{
+    padding-bottom: 5px;
+    padding-top: 3px;
+}
+.title{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 14px 0 25px;
+}
+.info-panel{
+    font-size: 30px;
+    width: 1100px;
+    margin: 0px auto;
+    background-color: #2F4F4F;
+    border-radius: 5px;
+    box-shadow: 0 7px 5px -5px rgba(0, 0, 0, 1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.main-wrapper {
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+    width: 1080px;
+    background-color: #1f1f1f;
+    border-style: ridge;
+    border-color: #3c4c40;
+    border-width: 2px;
+    font-size: 20px;
+    padding: 10px 0 20px;
+}
+.pics {
+    width: 100%;
+    text-align: center;
+    scroll-direction: horizontal;
+    display: inline-block;
+    overflow: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-top: 20px;
+    padding: 0 0 10px;
+}
+.pics > img {
+    width: 342px;
+    height: 250px;
+}
+.content {
+    font-size: 20px;
+    text-align: left;
+    padding: 10px 14px 20px 25px;
+}
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #5faf2d;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  width: 71.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-body {
+  position: relative;
+  background-color: #ffffff;
+  color: black;
+  font-size: 22px;
+  width: 500px;
+  text-align: left;
+  padding: 20px;
+}
+select {
+  padding: 10px 15px;
+  border: none;
+  background-color: #d0d0d0;
+  color: #1c1c1c;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 5px;
+  outline: none;
+}
+.d-none {
+  display: none!important;
+}

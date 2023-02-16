@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% csrf_token %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Тестовое задание{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    </head>
+
+    {% block content %}
+        <body>
+            <div class="header">
+                <h1>Тестовая покупка товара</h1>
+            </div>
+            <div class="logo-wrapper"></div>
+            <div class="main-wrapper">
+                <a href="http://127.0.0.1:8000/item/1"><font size="6" color="#FFFFFF">Товар 1</font></a><br>
+                <a href="http://127.0.0.1:8000/item/2"><font size="6" color="#FFFFFF">Товар 2</font></a><br>
+                <a href="http://127.0.0.1:8000/item/3"><font size="6" color="#FFFFFF">Товар 3</font></a><br>
+            </div>
+        </body>
+    {% endblock %}
+</html>

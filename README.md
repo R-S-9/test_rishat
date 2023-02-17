@@ -52,3 +52,15 @@ docker build .
 docker-compose build 
 docker-compose up         
 ```
+
+## Testing 
+``` 
+    https://f18b-212-164-21-236.eu.ngrok.io/ 
+``` 
+### Login by administrator 
+
+``` 
+url: https://f18b-212-164-21-236.eu.ngrok.io/admin/
+login: admin 
+password: 000000 
+```

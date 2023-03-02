@@ -55,12 +55,12 @@ docker-compose up
 
 ## Testing 
 ``` 
-    https://cbbf-176-51-238-243.eu.ngrok.io/
+url: https://39f4-212-164-46-163.eu.ngrok.io/
 ``` 
 ### Login by administrator 
 
 ``` 
-url: https://cbbf-176-51-238-243.eu.ngrok.io/admin/
+url: https://39f4-212-164-46-163.eu.ngrok.io/admin/
 login: admin 
 password: 000000 
 ```
